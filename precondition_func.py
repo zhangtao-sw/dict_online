@@ -13,8 +13,9 @@ class Precondition:
         for line in fd:
             res = re.findall(r'(\S+)\s+(.*)', line)[0]
             print(res)
-            self.db.insert(sql, res)
-        self.db.exit_()
+            self.db.execute(sql, res)
+        self.db.commit()
+        self.db.close()
         fd.close()
 
 if __name__ == '__main__':
